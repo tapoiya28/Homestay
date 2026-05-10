@@ -198,7 +198,7 @@ const Filter = ({ pos }: { pos: string }) => {
                   onClick={onSubmit}
                   className="bg-secondary text-white px-6 py-1.5 rounded hover:bg-primary transition-colors shadow-sm cursor-pointer ml-auto"
                 >
-                  Tìm phòng thuê
+                  Tìm kiếm
                 </button>
               </div>
 
