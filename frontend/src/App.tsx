@@ -11,6 +11,7 @@ import { LoginPage } from './pages/Auth/Login';
 import { RegisterPage } from './pages/Auth/Register';
 import { ForgetPasswordPage } from './pages/Auth/ForgotPassword';
 import RoomSearch from './pages/RoomSearch';
+import { RoomDetailPage } from './pages/RoomDetail';
 import MeetUpList from './pages/MeetUpList';
 
 const router = createBrowserRouter([
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "rooms", element: <RoomSearch /> },
+      { path: "room-detail", element: <RoomDetailPage /> },
       { path: "meet-up", element: <MeetUpList /> },
     ]
   },
