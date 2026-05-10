@@ -32,6 +32,7 @@ const Filter = ({ pos }: { pos: string }) => {
         ]);
         if (branchRes.data?.success) setBranches(branchRes.data.data);
         if (typeRes.data?.success) setRoomTypes(typeRes.data.data);
+        console.log(typeRes.data.data, branchRes.data.data);
       } catch (e) {
         console.error('Failed to load meta', e);
       }
@@ -39,7 +40,7 @@ const Filter = ({ pos }: { pos: string }) => {
     fetchMeta();
   }, []);
 
-  const handleNext = () => {
+  const onSubmit = () => {
     // Clone current URL params to preserve existing ones (like search name)
     const params = new URLSearchParams(searchParams);
 
@@ -191,13 +192,13 @@ const Filter = ({ pos }: { pos: string }) => {
                   onClick={() => setIsOpen(false)}
                   className="border border-[#81A18B] text-[#81A18B] px-4 py-1.5 rounded hover:bg-[#81A18B]/10 transition-colors cursor-pointer"
                 >
-                  Hủy đăng ký
+                  Hủy
                 </button>
                 <button
-                  onClick={handleNext}
+                  onClick={onSubmit}
                   className="bg-secondary text-white px-6 py-1.5 rounded hover:bg-primary transition-colors shadow-sm cursor-pointer ml-auto"
                 >
-                  Tiếp theo
+                  Tìm phòng thuê
                 </button>
               </div>
 

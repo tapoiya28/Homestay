@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import api from "@/lib/axios";
 import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -19,11 +20,14 @@ export const LoginPage = () => {
     try {
       const response = await api.post("/auth/login", data);
       if (response.data.success) {
+        toast.success("Đăng nhập thành công!");
         login(response.data.data.token, response.data.data.user);
         navigate("/");
       }
     } catch (err: any) {
-      setErrorMsg(err.response?.data?.message || "Đăng nhập thất bại");
+      const msg = err.response?.data?.message || "Đăng nhập thất bại";
+      setErrorMsg(msg);
+      toast.error(msg);
     }
   };
 

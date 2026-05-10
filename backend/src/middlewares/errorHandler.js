@@ -7,7 +7,7 @@ const errorHandler = (err, req, res, next) => {
         if (err.code === 'PGRST116') {
             return res.status(404).json({
                 success: false,
-                message: 'Data not found',
+                message: 'Không tìm thấy dữ liệu yêu cầu',
                 error: err.message
             });
         }
@@ -16,7 +16,7 @@ const errorHandler = (err, req, res, next) => {
         if (err.code === '23505') {
             return res.status(409).json({
                 success: false,
-                message: 'Data already exists',
+                message: 'Tài khoản với thông tin này đã tồn tại, vui lòng đăng nhập để tiếp tục',
                 error: err.message
             });
         }
@@ -25,7 +25,7 @@ const errorHandler = (err, req, res, next) => {
         if (err.code === '23503') {
             return res.status(400).json({
                 success: false,
-                message: 'Invalid reference data',
+                message: 'Dữ liệu tham chiếu không hợp lệ',
                 error: err.message
             });
         }
@@ -35,7 +35,7 @@ const errorHandler = (err, req, res, next) => {
     if (err.type === 'validation') {
         return res.status(400).json({
             success: false,
-            message: 'Invalid data',
+            message: 'Dữ liệu cung cấp không hợp lệ, vui lòng kiểm tra lại',
             errors: err.errors
         });
     }
@@ -51,7 +51,7 @@ const errorHandler = (err, req, res, next) => {
     // Generic errors
     res.status(err.status || 500).json({
         success: false,
-        message: err.message || 'Internal server error',
+        message: err.message || 'Đã xảy ra lỗi hệ thống, vui lòng thử lại sau',
         error: process.env.NODE_ENV === 'development' ? err.stack : undefined
     });
 };

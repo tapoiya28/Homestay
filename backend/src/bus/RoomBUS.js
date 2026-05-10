@@ -81,7 +81,7 @@ class RoomBUS {
 
     async getRoomById(roomId) {
         const room = await roomDAO.findById(roomId);
-        if (!room) throw Object.assign(new Error('Room not found'), { type: 'business' });
+        if (!room) throw Object.assign(new Error('Không tìm thấy thông tin phòng này.'), { type: 'business' });
         return this._formatRoom(room);
     }
 
@@ -121,7 +121,7 @@ class RoomBUS {
 
         // 2. Fetch current images then append
         const room = await roomDAO.findById(roomId);
-        if (!room) throw Object.assign(new Error('Room not found'), { type: 'business' });
+        if (!room) throw Object.assign(new Error('Không tìm thấy thông tin phòng để thêm ảnh.'), { type: 'business' });
         const currentImages = room.room_images || [];
         const updatedImages = [...currentImages, ...urls];
 
@@ -171,10 +171,10 @@ class RoomBUS {
 
     async deleteBed(bedId) {
         const bed = await bedDAO.findById(bedId);
-        if (!bed) throw Object.assign(new Error('Bed not found'), { type: 'business' });
+        if (!bed) throw Object.assign(new Error('Không tìm thấy thông tin giường này.'), { type: 'business' });
 
         if (bed.status !== 'Empty') {
-            throw Object.assign(new Error('Chỉ có thể xóa giường trống'), { type: 'business' });
+            throw Object.assign(new Error('Bạn chỉ có thể xóa những giường chưa có người thuê.'), { type: 'business' });
         }
 
         const roomId = bed.room_id;

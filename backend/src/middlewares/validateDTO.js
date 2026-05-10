@@ -4,7 +4,7 @@ const validateDTO = (DTOClass) => {
         const { valid, errors } = dto.validate();
 
         if (!valid) {
-            const error = new Error('Validation failed');
+            const error = new Error('Quá trình xác thực dữ liệu thất bại');
             error.type = 'validation';
             error.errors = errors;
             return next(error);

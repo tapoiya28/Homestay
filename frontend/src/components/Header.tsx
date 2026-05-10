@@ -68,6 +68,11 @@ const Header = () => {
             </div>
           </div>
         )}
+
+        <div className={`w-[1.5px] bg-secondary opacity-75 transition-all duration-500 ${passThreshold ? "h-5" : "h-6"}`}></div>
+        <Link to="/rooms">
+          <p className="text-text transition-colors hover:text-primary whitespace-nowrap cursor-pointer outline-none">Xem danh sách phòng</p>
+        </Link>
       </div>
 
       {/* Center Section: Brand/Logo (Fades out and shrinks) */}

@@ -4,7 +4,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Header from "../components/Header";
-
+// import Footer from "../components/home/Footer";
+// import Back from "../components/common/Back";
 
 export default function MainLayout() {
   return (

@@ -53,7 +53,6 @@ const ItemCardL = ({ room }: ItemCardLProps) => {
           {/* Meta Row: Time & Icon */}
           <div className="flex items-center justify-between text">
             <span className="be-vietnam-pro-medium text-size-small">{availableBedsText}</span>
-            <span className="text-size-xs text-text/50">Mới cập nhật</span>
           </div>
 
           {/* Title */}

@@ -28,7 +28,9 @@ export const RegisterPage = () => {
         navigate("/login");
       }
     } catch (err: any) {
-      setErrorMsg(err.response?.data?.message || "Đăng ký thất bại");
+      const msg = err.response?.data?.message || "Đăng ký thất bại";
+      setErrorMsg(msg);
+      toast.error(msg);
     }
   };
 
@@ -55,7 +57,7 @@ export const RegisterPage = () => {
           <input
             type="email"
             placeholder="Email"
-            {...register("email", { 
+            {...register("email", {
               required: "Vui lòng nhập email",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,

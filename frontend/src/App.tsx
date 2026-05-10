@@ -10,8 +10,8 @@ import Homepage from './pages/Homepage';
 import { LoginPage } from './pages/Auth/Login';
 import { RegisterPage } from './pages/Auth/Register';
 import { ForgetPasswordPage } from './pages/Auth/ForgotPassword';
-import RoomSearch from './pages/RoomSearch';
 import { RoomDetailPage } from './pages/RoomDetail';
+import RoomSearch from './pages/RoomSearch';
 import MeetUpList from './pages/MeetUpList';
 
 const router = createBrowserRouter([

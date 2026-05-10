@@ -29,11 +29,11 @@ router.post('/register', async (req, res, next) => {
     try {
         const { email, password, role, employee_id, tenant_id } = req.body;
         if (!email || !password || !role) {
-            return res.status(400).json({ success: false, message: 'email, password và role là bắt buộc' });
+            return res.status(400).json({ success: false, message: 'Vui lòng nhập đầy đủ email, mật khẩu và vai trò để đăng ký' });
         }
         const validRoles = ['admin', 'employee', 'customer'];
         if (!validRoles.includes(role)) {
-            return res.status(400).json({ success: false, message: `role phải là một trong: ${validRoles.join(', ')}` });
+            return res.status(400).json({ success: false, message: `Vai trò không hợp lệ, vui lòng chọn một trong các vai trò: ${validRoles.join(', ')}` });
         }
         const newAccount = await authBUS.register({ email, password, role, employeeId: employee_id || null, tenantId: tenant_id || null });
         return res.status(201).json({ success: true, message: 'Tạo tài khoản thành công', data: newAccount });

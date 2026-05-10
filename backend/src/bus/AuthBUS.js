@@ -11,7 +11,7 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 class AuthBUS {
     async login(email, password) {
         if (!email || !password) {
-            const err = new Error('Email và mật khẩu là bắt buộc');
+            const err = new Error('Vui lòng nhập đầy đủ email và mật khẩu để tiếp tục.');
             err.type = 'business';
             err.status = 400;
             throw err;
@@ -19,7 +19,7 @@ class AuthBUS {
 
         const account = await accountDAO.findByEmail(email);
         if (!account) {
-            const err = new Error('Email hoặc mật khẩu không đúng');
+            const err = new Error('Email hoặc mật khẩu không chính xác, vui lòng kiểm tra lại.');
             err.type = 'business';
             err.status = 401;
             throw err;
@@ -27,7 +27,7 @@ class AuthBUS {
 
         const isPasswordValid = await bcrypt.compare(password, account.password_hash);
         if (!isPasswordValid) {
-            const err = new Error('Email hoặc mật khẩu không đúng');
+            const err = new Error('Email hoặc mật khẩu không chính xác, vui lòng kiểm tra lại.');
             err.type = 'business';
             err.status = 401;
             throw err;
@@ -71,7 +71,7 @@ class AuthBUS {
         try {
             return jwt.verify(token, JWT_SECRET);
         } catch (err) {
-            const error = new Error('Token không hợp lệ hoặc đã hết hạn');
+            const error = new Error('Phiên đăng nhập đã hết hạn hoặc không hợp lệ, vui lòng đăng nhập lại.');
             error.type = 'unauthorized';
             error.status = 401;
             throw error;
@@ -81,7 +81,7 @@ class AuthBUS {
     async getMe(accountId) {
         let account = await accountDAO.findByIdWithRelations(accountId);
         if (!account) {
-            const err = new Error('Tài khoản không tồn tại');
+            const err = new Error('Tài khoản này không tồn tại trong hệ thống.');
             err.type = 'business';
             err.status = 404;
             throw err;
@@ -101,7 +101,7 @@ class AuthBUS {
     async updateProfile(accountId, updates) {
         let account = await accountDAO.findByIdWithRelations(accountId);
         if (!account) {
-            const err = new Error('Tài khoản không tồn tại');
+            const err = new Error('Tài khoản này không tồn tại trong hệ thống.');
             err.type = 'business';
             err.status = 404;
             throw err;
@@ -180,7 +180,7 @@ class AuthBUS {
 
     async forgotPassword(email) {
         if (!email) {
-            const err = new Error('Vui lòng nhập email');
+            const err = new Error('Vui lòng cung cấp địa chỉ email của bạn.');
             err.type = 'business';
             err.status = 400;
             throw err;
@@ -188,7 +188,7 @@ class AuthBUS {
 
         const account = await accountDAO.findByEmail(email);
         if (!account) {
-            const err = new Error('Tài khoản không tồn tại');
+            const err = new Error('Không tìm thấy tài khoản nào được liên kết với email này.');
             err.type = 'business';
             err.status = 404;
             throw err;
@@ -219,7 +219,7 @@ class AuthBUS {
 
     async resetPassword(email, otp, newPassword) {
         if (!email || !otp || !newPassword) {
-            const err = new Error('Thông tin không đầy đủ');
+            const err = new Error('Vui lòng cung cấp đầy đủ thông tin để đặt lại mật khẩu.');
             err.type = 'business';
             err.status = 400;
             throw err;
@@ -227,14 +227,14 @@ class AuthBUS {
 
         const storeData = otpStore.get(email);
         if (!storeData) {
-            const err = new Error('Không tìm thấy yêu cầu OTP hoặc OTP đã hết hạn');
+            const err = new Error('Yêu cầu đặt lại mật khẩu đã hết hạn hoặc không tồn tại.');
             err.type = 'business';
             err.status = 400;
             throw err;
         }
 
         if (storeData.otp !== otp) {
-            const err = new Error('Mã OTP không chính xác');
+            const err = new Error('Mã xác thực OTP không chính xác.');
             err.type = 'business';
             err.status = 400;
             throw err;
@@ -242,7 +242,7 @@ class AuthBUS {
 
         if (Date.now() > storeData.expiresAt) {
             otpStore.delete(email);
-            const err = new Error('Mã OTP đã hết hạn');
+            const err = new Error('Mã xác thực OTP đã hết thời gian hiệu lực.');
             err.type = 'business';
             err.status = 400;
             throw err;

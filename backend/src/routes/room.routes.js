@@ -9,7 +9,7 @@ const { RoomDTO } = require('../dto');
 // Room types (static routes first)
 router.get('/room-type/all', async (req, res, next) => {
     try {
-        const result = await roomBUS.getAllRoomTypes(req.query);
+        const result = await roomBUS.getAllRoomTypes({ ...req.query, limit: 100 });
         res.json({ success: true, ...result });
     } catch (error) { next(error); }
 });
@@ -61,7 +61,7 @@ router.put('/bed/:id', validateDTO(RoomDTO), async (req, res, next) => {
 router.delete('/bed/:id', async (req, res, next) => {
     try {
         await roomBUS.deleteBed(req.params.id);
-        res.json({ success: true, message: 'Đã xóa giường' });
+        res.json({ success: true, message: 'Giường đã được xóa thành công.' });
     } catch (error) { next(error); }
 });
 
