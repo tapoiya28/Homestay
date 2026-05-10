@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Colors */
+  --color-background: #FFFAF0 ;
+  --color-primary: #388056 ;
+  --color-secondary: #67A682 ;
+  --color-tirtiary: #98CDAE ;
+  --color-text: #000000 ;
+  --color-DarkRed: #D14E4E ;
+  --color-LightRed: #BB665C ;
+  --color-LightOutline: #D9D9D9 ;
+  --color-DarkOutline: #666666 ;
+
+  /* Text sizes */
+  --text-size-xs: 0.75rem ;
+  --text-size-small: 0.875rem ;
+  --text-size-base: 1rem ;
+  --text-size-large: 1.25rem ;
+  --text-size-xl: 1.5rem ;
+  --text-size-2xl: 2rem ;
+}
+
+.be-vietnam-pro-light {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.be-vietnam-pro-regular {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.be-vietnam-pro-medium {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.be-vietnam-pro-semibold {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.be-vietnam-pro-bold {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}

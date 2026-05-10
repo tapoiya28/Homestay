@@ -1,4 +1,4 @@
-const authService = require('../services/AuthService');
+const authBUS = require('../bus/AuthBUS');
 
 const authenticate = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -13,7 +13,7 @@ const authenticate = (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        const decoded = authService.verifyToken(token);
+        const decoded = authBUS.verifyToken(token);
         req.user = {
             account_id: decoded.account_id,
             username: decoded.username,
